@@ -68,6 +68,7 @@ class SimpleSlides extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
+    console.log(name, oldValue, newValue)
     switch(name) {
       case 'time':
         this._time = newValue
@@ -80,7 +81,7 @@ class SimpleSlides extends HTMLElement {
         break 
 
       case 'paused': 
-        this._paused = newValue
+        this._paused = String(newValue)
         break
 
     }

@@ -27,6 +27,8 @@ class HelloWorld extends HTMLElement {
     this._el.innerHTML = 'Hello World'
     // Set styles on the new element
     this._el.style.color = 'red'
+    this._el.style.fontWeight = 'bold'
+    this._el.style.fontSize = '36px'
 
     // Add this element to the shadow root
     this._shadowRoot.appendChild(this._el)
@@ -34,6 +36,7 @@ class HelloWorld extends HTMLElement {
 }
 
 // Register this new tag
+// <hello-world></hello-world>
 customElements.define('hello-world', HelloWorld);
 // ---------
 

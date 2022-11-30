@@ -22,7 +22,7 @@ class HelloWorld extends HTMLElement {
     // Make a new element to hold hello world
     this._el = document.createElement('h1')
     // Set the content of the new element
-    this._el.innerHTML = '<em>Foo Bar</em>'
+    this._el.innerHTML = '<em>-- Foo Bar --</em>'
     // Set styles on the new element
     this._el.style.color = 'rgb(255, 255, 0)'
     // background-color -> backgroundColor
@@ -31,47 +31,19 @@ class HelloWorld extends HTMLElement {
     this._el.style.textAlign = 'center'
     this._el.style.letterSpacing = '3'
 
+    // Use a slot to insert the original contents of the tag
+    this._el.appendChild(document.createElement('slot'))
+    // Notice the original text appears in the slot
+
     // Add this element to the shadow root
     this._shadowRoot.appendChild(this._el)
+  }
+
+  myMethod() {
+    return 'the element says hello!'
   }
 }
 
 // Register this new tag <hello-world></hello-world>
 customElements.define('hello-world', HelloWorld);
 // ---------
-
-
-/*  
-
-- Challenges - 1 - 
-
-The code above creates child element that is a span at line 21. 
-You might want to create any element. Change this to a h1.
-
-- Challenge - 2 - 
- 
-Above the code applies styles to the element via JS. You can use 
-all CSS styles by converting them to camelCase. For example: 
-
-background-color -> backgroundColor
-font-size -> fontSize
-
-Use three different styles to style the element. Try these or 
-use your own ideas: 
-
-- fontSize
-- color
-- letterSpacing
-
-*/
-
-// const cats = 999
-// function catTap() {
-
-// }
-
-// export { catTap, cats }
-
-// // -----
-
-// import { catTap, cats} from './script.js'

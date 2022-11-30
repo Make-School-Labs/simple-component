@@ -16,22 +16,56 @@
 
         <!-- Component names must contain a hyphen!
         Components can not be self closing tags <name /> -->
-
+        
         <hello-world>Inner Text</hello-world>
+
+        <!-- This template is not rendered! -->
+        <template>
+          <style>
+            #click-me {
+              all: unset;
+              background: tomato;
+              border: 0;
+              border-radius: 4px;
+              color: white;
+              font-family: Helvetica;
+              font-size: 1.5rem;
+              padding: .5rem 1rem;
+            }
+          </style>
+          <button id="click-me">Log click event</button>
+          <script>
+            const button = document.getElementById('click-me');
+            button.addEventListener('click', event => alert(event));
+          </script>
+        </template>
 
     </div>
 
-    <template id="cat-template">
-      <figure>
-        <figcaption>
-          <h1>Cat!</h1>
-        </figcaption>
-        <img src="images/cat-picture.png">
-      </figure>
-    </template>
-
     <!-- Important place this at the end of the body tag -->
     <script src="./hello-world.js" type="module"></script>
+    <script>
 
+      // This works! 
+      document.body.addEventListener('click', () => {
+        const helloEl = document.querySelector('hello-world')
+        console.log(helloEl)
+        // Can't call methods on a custom element immediately!
+        console.log(helloEl.myMethod())
+      })
+
+      // This doesn't work
+      // const helloEl = document.querySelector('hello-world')
+      // console.log(helloEl)
+      // Can't call methods on a custom element immediately!
+      // console.log(helloEl.myMethod())
+
+      // The code here makes an instance of the template
+      // and appends it to the DOM
+      const template = document.querySelector('template');
+      const node = document.importNode(template.content, true);
+      document.body.appendChild(node);
+      
+    </script>
   </body>
 </html>
